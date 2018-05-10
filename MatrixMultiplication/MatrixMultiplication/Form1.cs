@@ -38,7 +38,7 @@ namespace MatrixMultiplication
         {
             InitializeComponent();
             lbKetqua.Items.Clear();
-            N = 1000;
+            N = 10000;
             A = new double[N, N];
             B = new double[N, N];
             C = new double[N, N];
@@ -66,12 +66,13 @@ namespace MatrixMultiplication
                         s = s + A[h, k] * B[k, c];
                     }
                     C[h, c] = s;
-                    //ghi nhận đã hoàn thành
-                    stateLst[p.id] = 1;
-                    //ghi nhận thời gian
-                    dateLst[p.id] = DateTime.Now.Subtract(t1);
+                   
                 }
             }
+            //ghi nhận đã hoàn thành
+            stateLst[p.id] = 1;
+            //ghi nhận thời gian
+            dateLst[p.id] = DateTime.Now.Subtract(t1);
         }
 
         private void btnCham_Click(object sender, EventArgs e)
@@ -109,8 +110,7 @@ namespace MatrixMultiplication
                         Priority = tPrio[i % 5]
                     };
                     //hiển thị độ ưu tiên của Thread i
-                    lbKetqua.Items.Add(string.Format("Thread {0:d} có độ ưu tiên {1:d}"
-                        , i, t.Priority.ToString()));
+                    lbKetqua.Items.Add(string.Format("Thread {0:d} có độ ưu tiên {1:d}", i, t.Priority.ToString()));
                     //kích hoạt thread i chạy và truyền các tham số cho nó
                     t.Start(new Params(t, i * N / cnt, (i + 1) * N / cnt, i));
 
